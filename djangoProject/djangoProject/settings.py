@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'djangoProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'MYPRODUCTS_db',
+        'USER' : 'srivani',
+        'PASSWORD' : 'srivani22',
+        'HOST' : 'myproducts.c4e0hwifyc3n.ap-southeast-1.rds.amazonaws.com',
+        'PORT' : '5432',
     }
 }
 
@@ -119,9 +123,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+AWS_ACCESS_KEY_ID = 'AKIASQ5NB3U3X22KFQUC'
+
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'sriproductsbucket'
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'app1/static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
